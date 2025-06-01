@@ -1,7 +1,12 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\admin\\source\\repos\\bagherian2000\\visual-studio-2022-projects\\visual-studio-2022-projects\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{466758C9-FCE3-42B5-AE3C-BE565FE7D4C1}|payamresanusing cursor\\payamresanusing cursor.csproj|c:\\users\\admin\\source\\repos\\bagherian2000\\visual-studio-2022-projects\\visual-studio-2022-projects\\payamresanusing cursor\\about.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{466758C9-FCE3-42B5-AE3C-BE565FE7D4C1}|payamresanusing cursor\\payamresanusing cursor.csproj|solutionrelative:payamresanusing cursor\\about.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,7 +14,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -30,6 +35,19 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "About.aspx",
+              "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\bagherian2000\\visual-studio-2022-projects\\visual-studio-2022-projects\\payamresanusing cursor\\About.aspx",
+              "RelativeDocumentMoniker": "payamresanusing cursor\\About.aspx",
+              "ToolTip": "C:\\Users\\admin\\source\\repos\\bagherian2000\\visual-studio-2022-projects\\visual-studio-2022-projects\\payamresanusing cursor\\About.aspx",
+              "RelativeToolTip": "payamresanusing cursor\\About.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-06-01T08:31:57.006Z",
+              "EditorCaption": ""
             }
           ]
         }
