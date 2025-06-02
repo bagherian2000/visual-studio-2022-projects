@@ -36,7 +36,7 @@
                         <asp:BoundField DataField="curSuccess" HeaderText="curSuccess" />
                         <asp:BoundField DataField="curAnswerTels" HeaderText="curAnswerTels" />
                         <asp:BoundField DataField="curTotalSended" HeaderText="curTotalSended" />
-                        <asp:BoundField DataField="curTotalTels" HeaderText="curTotalTels" />
+                        <asp:BoundField DataField="totalTelInMainFile" HeaderText="totalTelInMainFile" />
                         <asp:BoundField DataField="strCurSendingNo" HeaderText="strCurSendingNo" />
                         <asp:BoundField DataField="priority" HeaderText="priority" />
                     </Columns>

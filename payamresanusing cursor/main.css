@@ -19,6 +19,18 @@ body {
     margin-bottom: 28px;
 }
 
+
+.project-info-grid {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+    
+
+    .project-info-grid th {
+        height: 35px;
+    }
+
 .label {
     display: inline-block;
     width: 170px;

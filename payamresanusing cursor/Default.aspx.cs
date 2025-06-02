@@ -1,24 +1,41 @@
 ﻿using System;
 using System.Web.UI;
 using System.Data.SqlClient;
-using System.Configuration; // Add this
+using System.Configuration;
+using System.Text;
+using System.Data;
+using System.Web.UI.WebControls;
 
 namespace ProjectControlPanelWeb
 {
     public partial class Default : Page
     {
-        // Get the connection string from Web.config
         private readonly string connectionString = ConfigurationManager.ConnectionStrings["PayamResanDB"].ConnectionString;
+        private const string QUERY_GET_MESSAGES = "SELECT Number FROM tblMessage ORDER BY Number";
+        private const string QUERY_GET_MESSAGE_DETAILS = "SELECT number, message FROM tblMessage";
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                PopulateInternalWaveNo();
-                PopulateMessages();
-                chkInternalWave.Checked = true; // Ensure checked by default
-                pnlFullPathWavFileName.Visible = !chkInternalWave.Checked;
+                try
+                {
+                    InitializePage();
+                }
+                catch (Exception ex)
+                {
+                    HandleError("خطا در بارگذاری صفحه", ex);
+                }
             }
+        }
+
+        private void InitializePage()
+        {
+            PopulateInternalWaveNo();
+            PopulateMessages();
+            LoadProjectInformation();
+            chkInternalWave.Checked = true;
+            pnlFullPathWavFileName.Visible = !chkInternalWave.Checked;
         }
 
         protected void chkInternalWave_CheckedChanged(object sender, EventArgs e)
@@ -28,56 +45,121 @@ namespace ProjectControlPanelWeb
 
         private void PopulateInternalWaveNo()
         {
-            string query = "SELECT Number FROM tblMessage ORDER BY Number";
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            using (SqlCommand cmd = new SqlCommand(query, conn))
+            using (var conn = new SqlConnection(connectionString))
             {
-                try
+                using (var cmd = new SqlCommand(QUERY_GET_MESSAGES, conn))
                 {
-                    conn.Open();
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    ddlInternalWaveNo.Items.Clear();
-                    while (reader.Read())
+                    try
                     {
-                        ddlInternalWaveNo.Items.Add(reader["Number"].ToString());
+                        conn.Open();
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            ddlInternalWaveNo.Items.Clear();
+                            while (reader.Read())
+                            {
+                                ddlInternalWaveNo.Items.Add(reader["Number"].ToString());
+                            }
+                        }
                     }
-                }
-                catch (Exception ex)
-                {
-                    lblResult.Text = "Error loading numbers: " + ex.Message;
+                    catch (Exception ex)
+                    {
+                        HandleError("خطا در بارگذاری شماره‌های داخلی", ex);
+                        throw;
+                    }
                 }
             }
         }
 
         private void PopulateMessages()
         {
-            string query = "SELECT number, message FROM tblMessage";
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            using (SqlCommand cmd = new SqlCommand(query, conn))
+            using (var conn = new SqlConnection(connectionString))
             {
-                try
+                using (var cmd = new SqlCommand(QUERY_GET_MESSAGE_DETAILS, conn))
                 {
-                    conn.Open();
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    System.Text.StringBuilder sb = new System.Text.StringBuilder();
-                    while (reader.Read())
+                    try
                     {
-                        sb.Append("<div style='padding:8px 0; direction:rtl; text-align:right;'>");
-                        sb.Append(Server.HtmlEncode(reader["number"].ToString()).Replace(Environment.NewLine, "<br/>"));
-                        sb.Append(" - ");
-                        sb.Append(Server.HtmlEncode(reader["message"].ToString()).Replace(Environment.NewLine, "<br/>"));
-                        sb.Append("</div>");
-                        sb.Append("<hr style='border:0; border-top:1px solid #c5e1a5; margin:4px 0;' />");
+                        conn.Open();
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            var sb = new StringBuilder();
+                            while (reader.Read())
+                            {
+                                AppendMessageToBuilder(sb, reader);
+                            }
+                            litMessages.Text = sb.ToString();
+                        }
                     }
-                    litMessages.Text = sb.ToString();
-                }
-                catch (Exception ex)
-                {
-                    lblResult.Text = "Error loading messages: " + ex.Message;
+                    catch (Exception ex)
+                    {
+                        HandleError("خطا در بارگذاری پیام‌ها", ex);
+                        throw;
+                    }
                 }
             }
+        }
+
+        private void AppendMessageToBuilder(StringBuilder sb, SqlDataReader reader)
+        {
+            sb.Append("<div class='message-item'>");
+            sb.Append(FormatMessageContent(reader));
+            sb.Append("</div>");
+            sb.Append("<hr class='message-divider' />");
+        }
+
+        private string FormatMessageContent(SqlDataReader reader)
+        {
+            var number = Server.HtmlEncode(reader["number"].ToString())
+                             .Replace(Environment.NewLine, "<br/>");
+            var message = Server.HtmlEncode(reader["message"].ToString())
+                              .Replace(Environment.NewLine, "<br/>");
+
+            return $"{number} - {message}";
+        }
+
+        private void HandleError(string userMessage, Exception ex)
+        {
+            // Log the error
+            LogError(ex);
+
+            // Show user-friendly message
+            lblResult.Text = $"{userMessage}: {ex.Message}";
+            lblResult.CssClass = "error-message";
+        }
+
+        private void LogError(Exception ex)
+        {
+            // You can implement your preferred logging mechanism here
+            // For example, using System.Diagnostics.EventLog or a custom logging solution
+            System.Diagnostics.Debug.WriteLine($"Error: {ex.Message}");
+            System.Diagnostics.Debug.WriteLine($"Stack Trace: {ex.StackTrace}");
+        }
+
+        protected void LoadProjectInformation()
+        {
+            try
+            {
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    const string query = "SELECT * FROM vwLastPrj  order by startSendDate DESC";
+                    using (var adapter = new SqlDataAdapter(query, connection))
+                    {
+                        var dt = new DataTable();
+                        adapter.Fill(dt);
+                        gvDoneProjects.DataSource = dt;
+                        gvDoneProjects.DataBind();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                HandleError("خطا در بارگذاری اطلاعات پروژه", ex);
+            }
+        }
+
+        protected void gvProjectInfo_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvDoneProjects.PageIndex = e.NewPageIndex;
+            LoadProjectInformation();
         }
     }
 }

@@ -78,13 +78,13 @@ namespace ProjectControlPanelWeb
         protected global::System.Web.UI.WebControls.GridView gvRunning;
 
         /// <summary>
-        /// gvDone control.
+        /// gvDoneProjects control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvDone;
+        protected global::System.Web.UI.WebControls.GridView gvDoneProjects;
 
         /// <summary>
         /// txtProjectId control.
