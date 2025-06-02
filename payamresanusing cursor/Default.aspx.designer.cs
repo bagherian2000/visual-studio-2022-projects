@@ -69,6 +69,42 @@ namespace ProjectControlPanelWeb
         protected global::System.Web.UI.WebControls.FileUpload wavFileUpload;
 
         /// <summary>
+        /// txtStartHour control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtStartHour;
+
+        /// <summary>
+        /// txtStartMinute control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtStartMinute;
+
+        /// <summary>
+        /// txtEndHour control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtEndHour;
+
+        /// <summary>
+        /// txtEndMinute control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtEndMinute;
+
+        /// <summary>
         /// gvRunning control.
         /// </summary>
         /// <remarks>

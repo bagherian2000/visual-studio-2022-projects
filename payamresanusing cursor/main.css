@@ -1,144 +1,220 @@
-/* Project Control Panel Styles */
+/* Modern UI Styles for Project Control Panel */
+:root {
+    --primary-color: #2196F3;
+    --primary-dark: #1976D2;
+    --primary-light: #BBDEFB;
+    --accent-color: #FF4081;
+    --text-primary: #212121;
+    --text-secondary: #757575;
+    --divider-color: #BDBDBD;
+    --success-color: #4CAF50;
+    --warning-color: #FFC107;
+    --error-color: #F44336;
+    --background-color: #F5F5F5;
+    --card-background: #FFFFFF;
+    --shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+    font-family: 'Vazirmatn', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--background-color);
     margin: 0;
-    padding: 0;
+    padding: 20px;
+    color: var(--text-primary);
+    line-height: 1.6;
 }
 
 .container {
-    max-width: 1100px;
-    margin: 30px auto;
-    background: #fff;
-    border-radius: 16px;
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
-    padding: 32px 40px 40px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
+/* Section Styles */
 .section {
-    margin-bottom: 28px;
-}
-
-
-.project-info-grid {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-    
-
-    .project-info-grid th {
-        height: 35px;
-    }
-
-.label {
-    display: inline-block;
-    width: 170px;
-    font-weight: 500;
-    color: #333;
-}
-
-.input, .aspNetDisabled {
-    width: 200px;
-    padding: 7px 10px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    margin-right: 10px;
-    margin-bottom: 8px;
-    font-size: 1em;
+    background: var(--card-background);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    padding: 20px;
+    margin-bottom: 20px;
 }
 
 .groupbox {
-    background: #f0f4f8;
-    border-radius: 10px;
-    padding: 18px 20px 20px 20px;
-    margin-bottom: 18px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    background: var(--card-background);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
 }
 
     .groupbox strong {
-        color: #2d6cdf;
-        font-size: 1.1em;
+        color: var(--primary-color);
+        font-size: 1.2em;
+        display: block;
+        margin-bottom: 15px;
+        padding: 10px;
+        background-color: #f8f9fa;
+        border-bottom: 1px solid #dee2e6;
+        border-radius: 4px 4px 0 0;
     }
 
-.buttons input, .buttons button, .buttons .aspNetDisabled {
-    background: linear-gradient(90deg, #36d1c4 0%, #5b86e5 100%);
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    padding: 8px 18px;
-    margin: 6px 8px 6px 0;
-    font-size: 1em;
-    cursor: pointer;
-    transition: background 0.2s, box-shadow 0.2s;
-    box-shadow: 0 2px 6px rgba(91,134,229,0.08);
+/* Form Controls */
+.label {
+    display: inline-block;
+    width: 180px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
 }
 
-    .buttons input:hover, .buttons button:hover {
-        background: linear-gradient(90deg, #5b86e5 0%, #36d1c4 100%);
-        box-shadow: 0 4px 12px rgba(91,134,229,0.15);
+.input, .aspNetDisabled {
+    width: 250px;
+    padding: 10px 15px;
+    border: 1px solid var(--divider-color);
+    border-radius: 6px;
+    margin-right: 10px;
+    margin-bottom: 15px;
+    font-size: 1em;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+    .input:focus, .aspNetDisabled:focus {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 2px var(--primary-light);
+        outline: none;
     }
 
-.grid {
+/* Buttons */
+.buttons {
+    margin-top: 20px;
+}
+
+    .buttons input, .buttons button, .buttons .aspNetDisabled {
+        background: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: 6px;
+        padding: 10px 20px;
+        margin: 5px;
+        font-size: 1em;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.2s;
+    }
+
+        .buttons input:hover, .buttons button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+/* Grid Styles */
+.grid, .project-info-grid {
     width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-    background: #fff;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 15px;
+    background: var(--card-background);
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    box-shadow: var(--shadow);
 }
 
-    .grid th {
-        background: #5b86e5;
-        color: #fff;
-        padding: 10px 6px;
+    .grid th, .project-info-grid th {
+        background: var(--primary-color);
+        color: white;
+        padding: 15px 10px;
         font-weight: 600;
+        text-align: right;
     }
 
-    .grid td {
-        padding: 8px 6px;
-        border-bottom: 1px solid #f0f0f0;
+    .grid td, .project-info-grid td {
+        padding: 12px 10px;
+        border-bottom: 1px solid var(--divider-color);
+        text-align: right;
     }
 
-    .grid tr:nth-child(even) {
-        background: #f7faff;
+    .grid tr:nth-child(even), .project-info-grid tr:nth-child(even) {
+        background: rgba(0,0,0,0.02);
     }
 
-    .grid tr:hover {
-        background: #e3f2fd;
+    .grid tr:hover, .project-info-grid tr:hover {
+        background: var(--primary-light);
     }
 
+/* Pager Styles */
+.pager {
+    margin-top: 15px;
+    text-align: center;
+}
+
+    .pager a {
+        display: inline-block;
+        padding: 8px 12px;
+        margin: 0 3px;
+        border: 1px solid var(--divider-color);
+        border-radius: 4px;
+        text-decoration: none;
+        color: var(--primary-color);
+        transition: all 0.3s;
+    }
+
+        .pager a:hover {
+            background: var(--primary-light);
+            border-color: var(--primary-color);
+        }
+
+    .pager span {
+        display: inline-block;
+        padding: 8px 12px;
+        margin: 0 3px;
+        background: var(--primary-color);
+        color: white;
+        border-radius: 4px;
+    }
+
+/* Messages Box */
 .messages-box {
     width: 100%;
-    min-height: 80px;
-    border: 1px solid #c5e1a5;
+    min-height: 100px;
+    border: 1px solid var(--success-color);
     border-radius: 8px;
-    padding: 12px;
-    background: #f9fbe7;
+    padding: 15px;
+    background: #F1F8E9;
     font-size: 1.1em;
-    color: #222;
-    font-family: 'Tahoma','Vazirmatn',Arial,sans-serif;
-    line-height: 1.7;
+    color: var(--text-primary);
     direction: rtl;
     text-align: right;
     resize: vertical;
 }
 
+.message-item {
+    padding: 10px 0;
+    direction: rtl;
+    text-align: right;
+}
+
+.message-divider {
+    border: 0;
+    border-top: 1px solid var(--success-color);
+    margin: 8px 0;
+}
+
+/* Result Label */
 #lblResult {
     display: block;
-    margin-top: 18px;
-    font-size: 1.1em;
-    color: #e65100;
-    font-weight: 600;
-    background: #fff3e0;
+    margin-top: 20px;
+    padding: 15px;
     border-radius: 6px;
-    padding: 10px 16px;
-    box-shadow: 0 1px 4px rgba(255,152,0,0.08);
+    font-weight: 500;
+}
+
+.error-message {
+    background: #FFEBEE;
+    color: var(--error-color);
+    border: 1px solid var(--error-color);
 }
 
 /* Responsive Design */
-@media (max-width: 700px) {
+@media (max-width: 768px) {
     .container {
         padding: 10px;
     }
@@ -147,4 +223,88 @@ body {
         width: 100%;
         display: block;
     }
+
+    .buttons input, .buttons button {
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    .grid, .project-info-grid {
+        display: block;
+        overflow-x: auto;
+    }
+}
+
+/* File Upload Styling */
+input[type="file"] {
+    padding: 10px;
+    background: #f8f9fa;
+    border: 1px dashed var(--divider-color);
+    border-radius: 6px;
+    width: 100%;
+    max-width: 300px;
+}
+
+/* Checkbox Styling */
+input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+/* Dropdown Styling */
+select {
+    padding: 10px 15px;
+    border: 1px solid var(--divider-color);
+    border-radius: 6px;
+    background: white;
+    width: 250px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+    select:focus {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 2px var(--primary-light);
+        outline: none;
+    }
+
+/* Time Controls Styles */
+.time-controls {
+    padding: 15px;
+    direction: rtl;
+}
+
+.time-group {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.time-label {
+    font-weight: bold;
+    min-width: 100px;
+}
+
+.time-inputs {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.time-input {
+    text-align: center;
+}
+
+.time-separator {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0 5px;
+}
+
+/* Add hover effect for better user interaction */
+.time-input:hover {
+    border-color: #007bff;
 }
