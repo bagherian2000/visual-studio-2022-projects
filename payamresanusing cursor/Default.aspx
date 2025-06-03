@@ -26,31 +26,66 @@
             </div>
 
             <!-- Time Control Section -->
-            <div class="section groupbox">
-                <strong>زمان‌های مجاز تماس</strong>
-                <div class="time-controls">
-                    <div class="time-group">
-                        <div class="time-label">زمان شروع:</div>
-                        <div class="time-inputs">
-                            <asp:TextBox ID="txtStartHour" runat="server" CssClass="input time-input" Text="8" TextMode="Number" 
-                                min="8" max="23" Width="60px" />
-                            <span class="time-separator">:</span>
-                            <asp:TextBox ID="txtStartMinute" runat="server" CssClass="input time-input" Text="0" TextMode="Number" 
-                                min="0" max="59" Width="60px" />
-                        </div>
-                    </div>
-                    <div class="time-group">
-                        <div class="time-label">زمان پایان:</div>
-                        <div class="time-inputs">
-                            <asp:TextBox ID="txtEndHour" runat="server" CssClass="input time-input" Text="21" TextMode="Number" 
-                                min="8" max="21" Width="60px" />
-                            <span class="time-separator">:</span>
-                            <asp:TextBox ID="txtEndMinute" runat="server" CssClass="input time-input" Text="0" TextMode="Number" 
-                                min="0" max="59" Width="60px" />
-                        </div>
-                    </div>
+  <div class="section groupbox">
+    <div class="time-call-container">
+        <!-- Time Control Section -->
+        <div class="time-controls">
+            <strong>زمان‌های مجاز تماس</strong>
+            <div class="time-group">
+                <div class="time-label">5-زمان شروع:</div>
+                <div class="time-inputs">
+                    <asp:TextBox ID="txtStartHour" runat="server" CssClass="input time-input" Text="8" TextMode="Number" min="8" max="23" Width="60px" />
+                    <span class="time-separator">:</span>
+                    <asp:TextBox ID="txtStartMinute" runat="server" CssClass="input time-input" Text="0" TextMode="Number" min="0" max="59" Width="60px" />
                 </div>
             </div>
+            <div class="time-group">
+                <div class="time-label">6-زمان پایان:</div>
+                <div class="time-inputs">
+                    <asp:TextBox ID="txtEndHour" runat="server" CssClass="input time-input" Text="21" TextMode="Number" min="8" max="21" Width="60px" />
+                    <span class="time-separator">:</span>
+                    <asp:TextBox ID="txtEndMinute" runat="server" CssClass="input time-input" Text="0" TextMode="Number" min="0" max="59" Width="60px" />
+                </div>
+            </div>
+        </div>
+
+        <!-- Vertical Separator -->
+        <div class="vertical-separator"></div>
+
+        <!-- Call Parameters Section -->
+        <div class="call-parameters">
+            <strong>پارامترهای تماس</strong>
+            <div class="parameter">
+                <span class="label">7 - desiredSendNo:</span>
+                <asp:TextBox ID="txtDesiredSendNo" runat="server" CssClass="input" Text="1" TextMode="Number" />
+            </div>
+            <div class="parameter">
+                <span class="label">8 - tresholdNo:</span>
+                <asp:TextBox ID="txtTresholdNo" runat="server" CssClass="input" Text="1000" TextMode="Number" />
+            </div>
+            <div class="parameter">
+                <span class="label">9 - testRingtime:</span>
+                <asp:TextBox ID="txtTestRingtime" runat="server" CssClass="input" Text="13" TextMode="Number" />
+            </div>
+            <div class="parameter">
+                <span class="label">10 - mainRingtime:</span>
+                <asp:TextBox ID="txtMainRingtime" runat="server" CssClass="input" Text="45" TextMode="Number" />
+            </div>
+            <div class="parameter">
+                <span class="label">11 - priority:</span>
+                <asp:DropDownList ID="ddlPriority" runat="server" CssClass="input">
+                    <asp:ListItem Text="low" Value="low" Selected="True" />
+                    <asp:ListItem Text="medium" Value="medium" />
+                    <asp:ListItem Text="high" Value="high" />
+                </asp:DropDownList>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
 
             <!-- DataGrid for Running Projects -->
             <div class="section groupbox">
@@ -63,7 +98,7 @@
                         <asp:BoundField DataField="curSuccess" HeaderText="curSuccess" />
                         <asp:BoundField DataField="curAnswerTels" HeaderText="curAnswerTels" />
                         <asp:BoundField DataField="curTotalSended" HeaderText="curTotalSended" />
-                        <asp:BoundField DataField="curTotalTels" HeaderText="curTotalTels" />
+                        <asp:BoundField DataField="totalTelInMainFile" HeaderText="curTotalTels" />
                         <asp:BoundField DataField="strCurSendingNo" HeaderText="strCurSendingNo" />
                         <asp:BoundField DataField="priority" HeaderText="priority" />
                     </Columns>
@@ -87,7 +122,7 @@
                             <asp:BoundField DataField="endSendDate" HeaderText="تاریخ پایان" DataFormatString="{0:yyyy/MM/dd}" />
                             <asp:BoundField DataField="status" HeaderText="وضعیت" />
                             <asp:BoundField DataField="totalSuccess" HeaderText="تعداد کل تماس‌های موفق" />
-                            <asp:BoundField DataField="curTotalTels" HeaderText="تعداد کل تماس‌ها" />
+                            <asp:BoundField DataField="totalTelInMainFile" HeaderText="تعداد کل تماس‌ها" />
                         </Columns>
                         <PagerStyle CssClass="pager" />
                     </asp:GridView>

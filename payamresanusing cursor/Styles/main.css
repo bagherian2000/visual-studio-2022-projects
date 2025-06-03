@@ -1,138 +1,225 @@
-/* Project Control Panel Styles */
+﻿/* Modern UI Styles for Project Control Panel */
+:root {
+    --primary-color: #007BFF;
+    --primary-dark: #0056b3;
+    --primary-light: #E3F2FD;
+    --accent-color: #FF4081;
+    --text-primary: #333;
+    --text-secondary: #757575;
+    --divider-color: #E0E0E0;
+    --success-color: #28a745;
+    --warning-color: #ffc107;
+    --error-color: #dc3545;
+    --background-color: #F8F9FA;
+    --card-background: #FFFFFF;
+    --shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* General Page Styling */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+    font-family: 'Vazirmatn', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--background-color);
     margin: 0;
-    padding: 0;
+    padding: 20px;
+    color: var(--text-primary);
+    line-height: 1.6;
 }
 
+/* Improved Container */
 .container {
-    max-width: 1100px;
-    margin: 30px auto;
-    background: #fff;
-    border-radius: 16px;
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
-    padding: 32px 40px 40px 40px;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
+/* Section Styling */
 .section {
-    margin-bottom: 28px;
+    background: var(--card-background);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    padding: 20px;
+    margin-bottom: 20px;
 }
 
-.label {
-    display: inline-block;
-    width: 170px;
-    font-weight: 500;
-    color: #333;
-}
-
-.input, .aspNetDisabled {
-    width: 200px;
-    padding: 7px 10px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    margin-right: 10px;
-    margin-bottom: 8px;
-    font-size: 1em;
-}
-
+/* Groupbox Styling */
 .groupbox {
-    background: #f0f4f8;
-    border-radius: 10px;
-    padding: 18px 20px 20px 20px;
-    margin-bottom: 18px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    background: var(--card-background);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
 }
 
     .groupbox strong {
-        color: #2d6cdf;
-        font-size: 1.1em;
+        color: var(--primary-color);
+        font-size: 1.4em;
+        display: block;
+        margin-bottom: 15px;
+        padding: 12px;
+        background: var(--primary-light);
+        border-radius: 6px;
+        text-align: center;
     }
 
-.buttons input, .buttons button, .buttons .aspNetDisabled {
-    background: linear-gradient(90deg, #36d1c4 0%, #5b86e5 100%);
-    color: #fff;
+/* Improved Labels */
+.label {
+    display: inline-block;
+    width: 200px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+}
+
+/* Stylish Input Fields */
+.input {
+    width: 100%;
+    max-width: 280px;
+    padding: 12px;
+    border: 2px solid var(--divider-color);
+    border-radius: 8px;
+    font-size: 1em;
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+    .input:focus {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 6px var(--primary-light);
+        outline: none;
+    }
+
+/* Button Styling */
+.buttons input, .buttons button {
+    background: var(--primary-color);
+    color: white;
     border: none;
-    border-radius: 6px;
-    padding: 8px 18px;
-    margin: 6px 8px 6px 0;
+    border-radius: 8px;
+    padding: 12px 20px;
     font-size: 1em;
     cursor: pointer;
-    transition: background 0.2s, box-shadow 0.2s;
-    box-shadow: 0 2px 6px rgba(91,134,229,0.08);
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
     .buttons input:hover, .buttons button:hover {
-        background: linear-gradient(90deg, #5b86e5 0%, #36d1c4 100%);
-        box-shadow: 0 4px 12px rgba(91,134,229,0.15);
+        background: var(--primary-dark);
+        transform: scale(1.03);
     }
 
-.grid {
+/* Improved Data Grid */
+.grid, .project-info-grid {
     width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-    background: #fff;
-    border-radius: 8px;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 15px;
+    background: var(--card-background);
+    border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    box-shadow: var(--shadow);
 }
 
-    .grid th {
-        background: #5b86e5;
-        color: #fff;
-        padding: 10px 6px;
+    .grid th, .project-info-grid th {
+        background: var(--primary-color);
+        color: white;
+        padding: 16px;
         font-weight: 600;
+        text-align: right;
     }
 
-    .grid td {
-        padding: 8px 6px;
-        border-bottom: 1px solid #f0f0f0;
+    .grid td, .project-info-grid td {
+        padding: 14px;
+        border-bottom: 1px solid var(--divider-color);
+        text-align: right;
     }
 
-    .grid tr:nth-child(even) {
-        background: #f7faff;
+    .grid tr:nth-child(even), .project-info-grid tr:nth-child(even) {
+        background: var(--primary-light);
     }
 
-    .grid tr:hover {
-        background: #e3f2fd;
+    .grid tr:hover, .project-info-grid tr:hover {
+        background: #d7e3fc;
     }
 
+/* Time Controls Styling */
+.time-call-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 20px;
+    width: 100%;
+}
+
+/* Stylish Separator */
+.vertical-separator {
+    width: 2px;
+    height: auto;
+    background-color: var(--divider-color);
+    margin: 0 15px;
+}
+
+/* Time Group Styles */
+.time-controls, .call-parameters {
+    flex: 1;
+}
+
+.time-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+.time-label {
+    font-weight: bold;
+    min-width: 120px;
+}
+
+.time-inputs {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.time-input {
+    text-align: center;
+    width: 65px;
+    border-radius: 6px;
+}
+
+/* Messages Box Styling */
 .messages-box {
     width: 100%;
-    min-height: 80px;
-    border: 1px solid #c5e1a5;
-    border-radius: 8px;
-    padding: 12px;
-    background: #f9fbe7;
+    min-height: 120px;
+    border: 1px solid var(--success-color);
+    border-radius: 12px;
+    padding: 15px;
+    background: #E8F5E9;
     font-size: 1.1em;
-    color: #222;
-    font-family: 'Tahoma','Vazirmatn',Arial,sans-serif;
-    line-height: 1.7;
+    color: var(--text-primary);
     direction: rtl;
     text-align: right;
-    resize: vertical;
-}
-
-#lblResult {
-    display: block;
-    margin-top: 18px;
-    font-size: 1.1em;
-    color: #e65100;
-    font-weight: 600;
-    background: #fff3e0;
-    border-radius: 6px;
-    padding: 10px 16px;
-    box-shadow: 0 1px 4px rgba(255,152,0,0.08);
 }
 
 /* Responsive Design */
-@media (max-width: 700px) {
+@media (max-width: 768px) {
     .container {
         padding: 10px;
+    }
+
+    .time-call-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .vertical-separator {
+        display: none;
     }
 
     .label, .input {
         width: 100%;
         display: block;
+    }
+
+    .buttons input, .buttons button {
+        width: 100%;
+        margin: 5px 0;
     }
 }
