@@ -7,6 +7,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
     <link href="Styles/main.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
+        function toggleWavPanel(checkbox) {
+            var panel = document.getElementById('<%= pnlFullPathWavFileName.ClientID %>');
+            if (checkbox.checked) {
+                panel.style.display = 'none';
+            } else {
+                panel.style.display = 'block';
+            }
+        }
+
+        // Call the function on page load to set initial state
+        window.onload = function() {
+            var checkbox = document.getElementById('<%= chkInternalWave.ClientID %>');
+            toggleWavPanel(checkbox);
+        };
+    </script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -14,14 +30,14 @@
             <!-- Top Controls -->
             <div class="section">
                 <span class="label">1 - telFileName:</span>
-                <asp:FileUpload ID="telFileUpload" runat="server" CssClass="input" />
+                 <asp:FileUpload ID="FileUpload1" runat="server" CssClass="input" accept=".txt" />
                 <span class="label">2 - haveInternalWave:</span>
-                <asp:CheckBox ID="chkInternalWave" runat="server" Checked="true" AutoPostBack="true" OnCheckedChanged="chkInternalWave_CheckedChanged" />
+                <asp:CheckBox ID="chkInternalWave" runat="server" Checked="true" OnCheckedChanged="chkInternalWave_CheckedChanged" onchange="toggleWavPanel(this);" />
                 <span class="label">3 - internalWaveNo:</span>
                 <asp:DropDownList ID="ddlInternalWaveNo" runat="server" CssClass="input"></asp:DropDownList>
                 <asp:Panel ID="pnlFullPathWavFileName" runat="server">
                     <span class="label">4 - fullPathWavFileName:</span>
-                    <asp:FileUpload ID="wavFileUpload" runat="server" CssClass="input" />
+                    <asp:FileUpload ID="wavFileUpload" runat="server" CssClass="input" accept=".wav" />
                 </asp:Panel>
             </div>
 
@@ -109,8 +125,8 @@
             <div class="section groupbox">
                 <strong style="direction: rtl; display: block;">نمایش اطلاعات پروژه های انجام شده</strong>
                 <div style="max-height: 150px; overflow-y: auto; direction: rtl;">
-                    <asp:GridView ID="gvDoneProjects" runat="server" 
-                        CssClass="project-info-grid" 
+                    <asp:GridView ID="gvDoneProjects" runat="server"
+                        CssClass="project-info-grid"
                         AutoGenerateColumns="False"
                         AllowPaging="True"
                         PageSize="3"
@@ -156,4 +172,4 @@
         </div>
     </form>
 </body>
-</html> 
+</html>

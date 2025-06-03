@@ -35,12 +35,12 @@ namespace ProjectControlPanelWeb
             PopulateMessages();
             LoadProjectInformation();
             chkInternalWave.Checked = true;
-            pnlFullPathWavFileName.Visible = !chkInternalWave.Checked;
+           
         }
 
         protected void chkInternalWave_CheckedChanged(object sender, EventArgs e)
         {
-            pnlFullPathWavFileName.Visible = !chkInternalWave.Checked;
+           
         }
 
         private void PopulateInternalWaveNo()
