@@ -18,10 +18,30 @@
         }
 
         // Call the function on page load to set initial state
-        window.onload = function() {
+        window.onload = function () {
             var checkbox = document.getElementById('<%= chkInternalWave.ClientID %>');
             toggleWavPanel(checkbox);
         };
+
+        function validateFileUploads() {
+            var telFile = document.getElementById('<%= FileUpload1.ClientID %>');
+            var chkInternalWave = document.getElementById('<%= chkInternalWave.ClientID %>');
+            var wavFile = document.getElementById('<%= wavFileUpload.ClientID %>');
+
+            // Check if tel file is selected
+            if (!telFile.value) {
+                alert('لطفا فایل تلفن را انتخاب کنید');
+                return false;
+            }
+
+            // If internal wave is not checked, check if wav file is selected
+            if (!chkInternalWave.checked && !wavFile.value) {
+                alert('لطفا فایل صوتی را انتخاب کنید');
+                return false;
+            }
+
+            return true;
+        }
     </script>
 </head>
 <body>
@@ -29,12 +49,20 @@
         <div class="container">
             <!-- Top Controls -->
             <div class="section">
-                <span class="label">1 - telFileName:</span>
-                 <asp:FileUpload ID="FileUpload1" runat="server" CssClass="input" accept=".txt" />
-                <span class="label">2 - haveInternalWave:</span>
-                <asp:CheckBox ID="chkInternalWave" runat="server" Checked="true" OnCheckedChanged="chkInternalWave_CheckedChanged" onchange="toggleWavPanel(this);" />
-                <span class="label">3 - internalWaveNo:</span>
-                <asp:DropDownList ID="ddlInternalWaveNo" runat="server" CssClass="input"></asp:DropDownList>
+                <div class="top-controls">
+                    <div class="control-group">
+                        <span class="label">1 - telFileName:</span>
+                        <asp:FileUpload ID="FileUpload1" runat="server" CssClass="input" accept=".txt" />
+                    </div>
+                    <div class="control-group">
+                        <span class="label">2 - haveInternalWave:</span>
+                        <asp:CheckBox ID="chkInternalWave" runat="server" Checked="true" OnCheckedChanged="chkInternalWave_CheckedChanged" onchange="toggleWavPanel(this);" CssClass="aligned-checkbox" />
+                    </div>
+                    <div class="control-group">
+                        <span class="label">3 - internalWaveNo:</span>
+                        <asp:DropDownList ID="ddlInternalWaveNo" runat="server" CssClass="input"></asp:DropDownList>
+                    </div>
+                </div>
                 <asp:Panel ID="pnlFullPathWavFileName" runat="server">
                     <span class="label">4 - fullPathWavFileName:</span>
                     <asp:FileUpload ID="wavFileUpload" runat="server" CssClass="input" accept=".wav" />
@@ -42,66 +70,62 @@
             </div>
 
             <!-- Time Control Section -->
-  <div class="section groupbox">
-    <div class="time-call-container">
-        <!-- Time Control Section -->
-        <div class="time-controls">
-            <strong>زمان‌های مجاز تماس</strong>
-            <div class="time-group">
-                <div class="time-label">5-زمان شروع:</div>
-                <div class="time-inputs">
-                    <asp:TextBox ID="txtStartHour" runat="server" CssClass="input time-input" Text="8" TextMode="Number" min="8" max="23" Width="60px" />
-                    <span class="time-separator">:</span>
-                    <asp:TextBox ID="txtStartMinute" runat="server" CssClass="input time-input" Text="0" TextMode="Number" min="0" max="59" Width="60px" />
+            <div class="section groupbox">
+                <div class="time-call-container">
+                    <!-- Time Control Section -->
+                    <div class="time-controls">
+                        <strong>زمان‌های مجاز تماس</strong>
+                        <div class="time-group">
+                            <div class="time-label">5-زمان شروع:</div>
+                            <div class="time-inputs">
+                                <asp:TextBox ID="txtStartHour" runat="server" CssClass="input time-input" Text="8" TextMode="Number" min="8" max="23" Width="60px" />
+                                <span class="time-separator">:</span>
+                                <asp:TextBox ID="txtStartMinute" runat="server" CssClass="input time-input" Text="0" TextMode="Number" min="0" max="59" Width="60px" />
+                            </div>
+                        </div>
+                        <div class="time-group">
+                            <div class="time-label">6-زمان پایان:</div>
+                            <div class="time-inputs">
+                                <asp:TextBox ID="txtEndHour" runat="server" CssClass="input time-input" Text="21" TextMode="Number" min="8" max="21" Width="60px" />
+                                <span class="time-separator">:</span>
+                                <asp:TextBox ID="txtEndMinute" runat="server" CssClass="input time-input" Text="0" TextMode="Number" min="0" max="59" Width="60px" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Vertical Separator -->
+                    <div class="vertical-separator"></div>
+
+                    <!-- Call Parameters Section -->
+                    <div class="call-parameters">
+                        <strong>پارامترهای تماس</strong>
+                        <div class="parameter">
+                            <span class="label">7 - desiredSendNo:</span>
+                            <asp:TextBox ID="txtDesiredSendNo" runat="server" CssClass="input" Text="1" TextMode="Number" />
+                        </div>
+                        <div class="parameter">
+                            <span class="label">8 - tresholdNo:</span>
+                            <asp:TextBox ID="txtTresholdNo" runat="server" CssClass="input" Text="1000" TextMode="Number" />
+                        </div>
+                        <div class="parameter">
+                            <span class="label">9 - testRingtime:</span>
+                            <asp:TextBox ID="txtTestRingtime" runat="server" CssClass="input" Text="13" TextMode="Number" />
+                        </div>
+                        <div class="parameter">
+                            <span class="label">10 - mainRingtime:</span>
+                            <asp:TextBox ID="txtMainRingtime" runat="server" CssClass="input" Text="45" TextMode="Number" />
+                        </div>
+                        <div class="parameter">
+                            <span class="label">11 - priority:</span>
+                            <asp:DropDownList ID="ddlPriority" runat="server" CssClass="input">
+                                <asp:ListItem Text="low" Value="low" Selected="True" />
+                                <asp:ListItem Text="medium" Value="medium" />
+                                <asp:ListItem Text="high" Value="high" />
+                            </asp:DropDownList>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="time-group">
-                <div class="time-label">6-زمان پایان:</div>
-                <div class="time-inputs">
-                    <asp:TextBox ID="txtEndHour" runat="server" CssClass="input time-input" Text="21" TextMode="Number" min="8" max="21" Width="60px" />
-                    <span class="time-separator">:</span>
-                    <asp:TextBox ID="txtEndMinute" runat="server" CssClass="input time-input" Text="0" TextMode="Number" min="0" max="59" Width="60px" />
-                </div>
-            </div>
-        </div>
-
-        <!-- Vertical Separator -->
-        <div class="vertical-separator"></div>
-
-        <!-- Call Parameters Section -->
-        <div class="call-parameters">
-            <strong>پارامترهای تماس</strong>
-            <div class="parameter">
-                <span class="label">7 - desiredSendNo:</span>
-                <asp:TextBox ID="txtDesiredSendNo" runat="server" CssClass="input" Text="1" TextMode="Number" />
-            </div>
-            <div class="parameter">
-                <span class="label">8 - tresholdNo:</span>
-                <asp:TextBox ID="txtTresholdNo" runat="server" CssClass="input" Text="1000" TextMode="Number" />
-            </div>
-            <div class="parameter">
-                <span class="label">9 - testRingtime:</span>
-                <asp:TextBox ID="txtTestRingtime" runat="server" CssClass="input" Text="13" TextMode="Number" />
-            </div>
-            <div class="parameter">
-                <span class="label">10 - mainRingtime:</span>
-                <asp:TextBox ID="txtMainRingtime" runat="server" CssClass="input" Text="45" TextMode="Number" />
-            </div>
-            <div class="parameter">
-                <span class="label">11 - priority:</span>
-                <asp:DropDownList ID="ddlPriority" runat="server" CssClass="input">
-                    <asp:ListItem Text="low" Value="low" Selected="True" />
-                    <asp:ListItem Text="medium" Value="medium" />
-                    <asp:ListItem Text="high" Value="high" />
-                </asp:DropDownList>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-
 
             <!-- DataGrid for Running Projects -->
             <div class="section groupbox">
@@ -124,13 +148,10 @@
             <!-- Project Information Section -->
             <div class="section groupbox">
                 <strong style="direction: rtl; display: block;">نمایش اطلاعات پروژه های انجام شده</strong>
-                <div style="max-height: 150px; overflow-y: auto; direction: rtl;">
+                <div style="max-height: 300px; overflow-y: auto; direction: rtl;">
                     <asp:GridView ID="gvDoneProjects" runat="server"
                         CssClass="project-info-grid"
-                        AutoGenerateColumns="False"
-                        AllowPaging="True"
-                        PageSize="3"
-                        OnPageIndexChanging="gvProjectInfo_PageIndexChanging">
+                        AutoGenerateColumns="False">
                         <Columns>
                             <asp:BoundField DataField="projectsId" HeaderText="شناسه پروژه" />
                             <asp:BoundField DataField="prjName" HeaderText="نام پروژه" />
@@ -140,7 +161,6 @@
                             <asp:BoundField DataField="totalSuccess" HeaderText="تعداد کل تماس‌های موفق" />
                             <asp:BoundField DataField="totalTelInMainFile" HeaderText="تعداد کل تماس‌ها" />
                         </Columns>
-                        <PagerStyle CssClass="pager" />
                     </asp:GridView>
                 </div>
             </div>
@@ -152,7 +172,7 @@
                 <asp:TextBox ID="txtProjectId" runat="server" CssClass="input" />
                 <div class="buttons">
                     <asp:Button ID="btnRequestSettings" runat="server" Text="درخواست تنظیمات" />
-                    <asp:Button ID="btnSend" runat="server" Text="Send =>" />
+                    <asp:Button ID="btnSend" runat="server" Text="Send =>" OnClientClick="return validateFileUploads();" />
                     <asp:Button ID="btnResume" runat="server" Text="Resume" />
                     <asp:Button ID="btnPause" runat="server" Text="Pause" />
                     <asp:Button ID="btnBreak" runat="server" Text="Break" />

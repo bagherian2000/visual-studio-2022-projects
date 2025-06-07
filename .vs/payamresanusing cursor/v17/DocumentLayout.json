@@ -7,16 +7,12 @@
       "RelativeMoniker": "D:0:0:{466758C9-FCE3-42B5-AE3C-BE565FE7D4C1}|payamresanusing cursor\\payamresanusing cursor.csproj|solutionrelative:payamresanusing cursor\\default.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{466758C9-FCE3-42B5-AE3C-BE565FE7D4C1}|payamresanusing cursor\\payamresanusing cursor.csproj|C:\\Users\\admin\\source\\repos\\bagherian2000\\visual-studio-2022-projects\\visual-studio-2022-projects\\payamresanusing cursor\\default.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{466758C9-FCE3-42B5-AE3C-BE565FE7D4C1}|payamresanusing cursor\\payamresanusing cursor.csproj|solutionrelative:payamresanusing cursor\\default.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{466758C9-FCE3-42B5-AE3C-BE565FE7D4C1}|payamresanusing cursor\\payamresanusing cursor.csproj|C:\\Users\\admin\\source\\repos\\bagherian2000\\visual-studio-2022-projects\\visual-studio-2022-projects\\payamresanusing cursor\\about.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{466758C9-FCE3-42B5-AE3C-BE565FE7D4C1}|payamresanusing cursor\\payamresanusing cursor.csproj|solutionrelative:payamresanusing cursor\\about.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\admin\\source\\repos\\bagherian2000\\visual-studio-2022-projects\\visual-studio-2022-projects\\payamresanusing cursor\\Styles\\main.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:payamresanusing cursor\\Styles\\main.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{466758C9-FCE3-42B5-AE3C-BE565FE7D4C1}|payamresanusing cursor\\payamresanusing cursor.csproj|C:\\Users\\admin\\source\\repos\\bagherian2000\\visual-studio-2022-projects\\visual-studio-2022-projects\\payamresanusing cursor\\default.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{466758C9-FCE3-42B5-AE3C-BE565FE7D4C1}|payamresanusing cursor\\payamresanusing cursor.csproj|solutionrelative:payamresanusing cursor\\default.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -50,28 +46,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "main.css",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\bagherian2000\\visual-studio-2022-projects\\visual-studio-2022-projects\\payamresanusing cursor\\Styles\\main.css",
               "RelativeDocumentMoniker": "payamresanusing cursor\\Styles\\main.css",
               "ToolTip": "C:\\Users\\admin\\source\\repos\\bagherian2000\\visual-studio-2022-projects\\visual-studio-2022-projects\\payamresanusing cursor\\Styles\\main.css",
               "RelativeToolTip": "payamresanusing cursor\\Styles\\main.css",
-              "ViewState": "AQIAAIQAAAAAAAAAAAAuwJEAAAAOAAAA",
+              "ViewState": "AQIAABoBAAAAAAAAAAAuwDcBAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
               "WhenOpened": "2025-06-03T05:26:50.379Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "About.aspx",
-              "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\bagherian2000\\visual-studio-2022-projects\\visual-studio-2022-projects\\payamresanusing cursor\\About.aspx",
-              "RelativeDocumentMoniker": "payamresanusing cursor\\About.aspx",
-              "ToolTip": "C:\\Users\\admin\\source\\repos\\bagherian2000\\visual-studio-2022-projects\\visual-studio-2022-projects\\payamresanusing cursor\\About.aspx",
-              "RelativeToolTip": "payamresanusing cursor\\About.aspx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-06-02T07:33:40.103Z",
               "EditorCaption": ""
             },
             {
@@ -89,7 +72,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Default.aspx.cs",
               "DocumentMoniker": "C:\\Users\\admin\\source\\repos\\bagherian2000\\visual-studio-2022-projects\\visual-studio-2022-projects\\payamresanusing cursor\\Default.aspx.cs",
               "RelativeDocumentMoniker": "payamresanusing cursor\\Default.aspx.cs",
@@ -97,8 +80,7 @@
               "RelativeToolTip": "payamresanusing cursor\\Default.aspx.cs",
               "ViewState": "AQIAAA8AAAAAAAAAAAAYwCUAAAALAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-02T06:32:38.297Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-02T06:32:38.297Z"
             }
           ]
         }

@@ -61,19 +61,16 @@ body {
         text-align: center;
     }
 
-/* Improved Labels */
+/* Improved Labels (General) */
 .label {
     display: inline-block;
-    width: 200px;
     font-weight: 600;
     color: var(--text-secondary);
-    margin-bottom: 10px;
+    margin-bottom: 10px; /* This will be overridden by control-group .label */
 }
 
-/* Stylish Input Fields */
+/* Stylish Input Fields (Generic, without fixed width) */
 .input {
-    width: 100%;
-    max-width: 280px;
     padding: 12px;
     border: 2px solid var(--divider-color);
     border-radius: 8px;
@@ -198,6 +195,53 @@ body {
     text-align: right;
 }
 
+/* Top Controls Layout for individual groups */
+.top-controls {
+    display: flex;
+    align-items: flex-start; /* Align groups to the top */
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.control-group {
+    display: grid; /* Changed to grid layout */
+    grid-template-columns: auto 1fr; /* Label takes auto width, input takes rest */
+    align-items: center; /* Vertically center label and input */
+    gap: 8px; /* Space between label and input */
+    margin-bottom: 10px; /* Space below each group */
+}
+
+    .control-group .label {
+        width: auto; /* Allow label to take only necessary width */
+        margin-bottom: 0; /* Remove bottom margin if grid item */
+        flex-shrink: 0; /* Prevent label from shrinking (good practice) */
+        white-space: nowrap; /* Prevent label text from wrapping */
+    }
+
+    /* Specific styling for ASP.NET controls within .control-group */
+    .control-group input[type="file"],
+    .control-group input[type="checkbox"],
+    .control-group select {
+        vertical-align: middle; /* Align vertically (good practice) */
+        box-sizing: border-box; /* Include padding and border in sizing */
+    }
+
+    .control-group input[type="file"] {
+        max-width: 200px; /* Specific width for file upload */
+    }
+
+    .control-group input[type="checkbox"] {
+        width: 18px; /* Standard size for checkbox */
+        height: 18px;
+        margin: 0; /* Remove default margins */
+        position: relative; /* Enable positioning */
+        top: 1px; /* Adjust vertical position slightly */
+    }
+
+    .control-group select {
+        max-width: 150px; /* Specific width for dropdown */
+    }
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .container {
@@ -222,4 +266,46 @@ body {
         width: 100%;
         margin: 5px 0;
     }
+}
+
+/* General File Upload Styling (may be overridden by control-group specific styles) */
+input[type="file"] {
+    padding: 10px;
+    background: #f8f9fa;
+    border: 1px dashed var(--divider-color);
+    border-radius: 6px;
+    width: 100%; /* This will be overridden by control-group specific max-width */
+    max-width: 300px;
+}
+
+/* General Dropdown Styling (may be overridden by control-group specific styles) */
+select {
+    padding: 10px 15px;
+    border: 1px solid var(--divider-color);
+    border-radius: 6px;
+    background: white;
+    width: 250px; /* This will be overridden by control-group specific max-width */
+    font-size: 1em;
+    cursor: pointer;
+}
+
+    select:focus {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 2px var(--primary-light);
+        outline: none;
+    }
+
+/* Result Label */
+#lblResult {
+    display: block;
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 6px;
+    font-weight: 500;
+}
+
+.error-message {
+    background: #FFEBEE;
+    color: var(--error-color);
+    border: 1px solid var(--error-color);
 }
