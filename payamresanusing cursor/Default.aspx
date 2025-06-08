@@ -40,8 +40,55 @@
                 return false;
             }
 
+
+            const testNumbers = [
+                document.getElementById('<%= txtTestNumber1.ClientID %>'),
+                document.getElementById('<%= txtTestNumber2.ClientID %>'),
+                document.getElementById('<%= txtTestNumber3.ClientID %>')
+            ];
+
+            for (let i = 0; i < testNumbers.length; i++) {
+                const input = testNumbers[i];
+                if (input.value) {
+                    // Remove dashes for validation
+                    const digitsOnly = input.value.replace(/\D/g, '');
+                    if (!/^(?:\d{8}|\d{11})$/.test(digitsOnly)) {
+                        alert(`شماره تست ${i + 1} باید 8 یا 11 رقم باشد (با فرمت صحیح)`);
+                        input.focus();
+                        return false;
+                    }
+                }
+            }
+
+
             return true;
         }
+
+        // Formats input as 8-digit (123-45678) or 11-digit (0912-345-6789)
+        function formatPhoneNumber(input) {
+            // Remove all non-digits
+            let value = input.value.replace(/\D/g, '');
+
+            // Apply mask based on length
+            if (value.length <= 8) {
+                // 8-digit format: 123-45678
+                if (value.length > 3) {
+                    value = value.substring(0, 3) + '-' + value.substring(3, 8);
+                }
+            } else if (value.length <= 11) {
+                // 11-digit format: 0912-345-6789
+                if (value.length > 4) {
+                    value = value.substring(0, 4) + '-' + value.substring(4, 7) + '-' + value.substring(7, 11);
+                }
+            } else {
+                // Trim excess digits
+                value = value.substring(0, 11);
+            }
+
+            input.value = value;
+        }
+
+              
     </script>
 </head>
 <body>
@@ -124,6 +171,30 @@
                             </asp:DropDownList>
                         </div>
                     </div>
+                     <div class="parameter test-numbers">
+    <strong>شماره های تست</strong>
+    <div class="test-number-group">
+        <span class="label">number1:</span>
+        <asp:TextBox ID="txtTestNumber1" runat="server" CssClass="input" 
+            MaxLength="14" 
+            oninput="formatPhoneNumber(this)" 
+            placeholder="8 or 11 digits" />
+    </div>
+    <div class="test-number-group">
+        <span class="label">number2:</span>
+        <asp:TextBox ID="txtTestNumber2" runat="server" CssClass="input" 
+            MaxLength="14" 
+            oninput="formatPhoneNumber(this)" 
+            placeholder="8 or 11 digits" />
+    </div>
+    <div class="test-number-group">
+        <span class="label">number3:</span>
+        <asp:TextBox ID="txtTestNumber3" runat="server" CssClass="input" 
+            MaxLength="14" 
+            oninput="formatPhoneNumber(this)" 
+            placeholder="8 or 11 digits" />
+    </div>
+</div>
                 </div>
             </div>
 

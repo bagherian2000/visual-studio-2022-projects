@@ -150,6 +150,33 @@ namespace ProjectControlPanelWeb
         protected global::System.Web.UI.WebControls.DropDownList ddlPriority;
 
         /// <summary>
+        /// txtTestNumber1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtTestNumber1;
+
+        /// <summary>
+        /// txtTestNumber2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtTestNumber2;
+
+        /// <summary>
+        /// txtTestNumber3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtTestNumber3;
+
+        /// <summary>
         /// gvRunning control.
         /// </summary>
         /// <remarks>

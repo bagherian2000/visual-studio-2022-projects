@@ -269,6 +269,21 @@ body {
 }
 
 /* General File Upload Styling (may be overridden by control-group specific styles) */
+
+.test-numbers {
+    display: flex;
+    gap: 10px; /* Space between the fields */
+    margin-top: 10px;
+}
+
+.test-number-group {
+    display: flex;
+    align-items: center;
+}
+
+    .test-number-group .label {
+        margin-right: 5px;
+    }
 input[type="file"] {
     padding: 10px;
     background: #f8f9fa;
