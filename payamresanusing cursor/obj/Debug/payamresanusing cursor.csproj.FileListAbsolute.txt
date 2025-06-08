@@ -71,6 +71,8 @@ C:\Users\admin\source\repos\payamresanusing cursor\payamresanusing cursor\bin\Mi
 C:\Users\admin\source\repos\payamresanusing cursor\payamresanusing cursor\obj\Debug\payamres.E4F6CA9F.Up2Date
 C:\Users\admin\source\repos\payamresanusing cursor\payamresanusing cursor\obj\Debug\payamresanusing cursor.dll
 C:\Users\admin\source\repos\payamresanusing cursor\payamresanusing cursor\obj\Debug\payamresanusing cursor.pdb
+C:\Users\admin\source\repos\bagherian2000\visual-studio-2022-projects\visual-studio-2022-projects\payamresanusing cursor\obj\Debug\payamresanusing cursor.csproj.AssemblyReference.cache
+C:\Users\admin\source\repos\bagherian2000\visual-studio-2022-projects\visual-studio-2022-projects\payamresanusing cursor\obj\Debug\payamresanusing cursor.csproj.CoreCompileInputs.cache
 C:\Users\admin\source\repos\bagherian2000\visual-studio-2022-projects\visual-studio-2022-projects\payamresanusing cursor\bin\payamresanusing cursor.dll.config
 C:\Users\admin\source\repos\bagherian2000\visual-studio-2022-projects\visual-studio-2022-projects\payamresanusing cursor\bin\payamresanusing cursor.dll
 C:\Users\admin\source\repos\bagherian2000\visual-studio-2022-projects\visual-studio-2022-projects\payamresanusing cursor\bin\payamresanusing cursor.pdb
@@ -139,8 +141,6 @@ C:\Users\admin\source\repos\bagherian2000\visual-studio-2022-projects\visual-stu
 C:\Users\admin\source\repos\bagherian2000\visual-studio-2022-projects\visual-studio-2022-projects\payamresanusing cursor\bin\Antlr3.Runtime.pdb
 C:\Users\admin\source\repos\bagherian2000\visual-studio-2022-projects\visual-studio-2022-projects\payamresanusing cursor\bin\Microsoft.AspNet.FriendlyUrls.xml
 C:\Users\admin\source\repos\bagherian2000\visual-studio-2022-projects\visual-studio-2022-projects\payamresanusing cursor\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\admin\source\repos\bagherian2000\visual-studio-2022-projects\visual-studio-2022-projects\payamresanusing cursor\obj\Debug\payamresanusing cursor.csproj.AssemblyReference.cache
-C:\Users\admin\source\repos\bagherian2000\visual-studio-2022-projects\visual-studio-2022-projects\payamresanusing cursor\obj\Debug\payamresanusing cursor.csproj.CoreCompileInputs.cache
 C:\Users\admin\source\repos\bagherian2000\visual-studio-2022-projects\visual-studio-2022-projects\payamresanusing cursor\obj\Debug\payamres.E4F6CA9F.Up2Date
 C:\Users\admin\source\repos\bagherian2000\visual-studio-2022-projects\visual-studio-2022-projects\payamresanusing cursor\obj\Debug\payamresanusing cursor.dll
 C:\Users\admin\source\repos\bagherian2000\visual-studio-2022-projects\visual-studio-2022-projects\payamresanusing cursor\obj\Debug\payamresanusing cursor.pdb

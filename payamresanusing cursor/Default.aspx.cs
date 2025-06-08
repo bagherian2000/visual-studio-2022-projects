@@ -5,6 +5,7 @@ using System.Configuration;
 using System.Text;
 using System.Data;
 using System.Web.UI.WebControls;
+using payamresanusing_cursor.ServiceReference1;
 
 namespace ProjectControlPanelWeb
 {
@@ -35,11 +36,14 @@ namespace ProjectControlPanelWeb
             PopulateMessages();
             LoadProjectInformation();
             chkInternalWave.Checked = true;
-           
+
+            
+
         }
 
         protected void chkInternalWave_CheckedChanged(object sender, EventArgs e)
         {
+           
            
         }
 
@@ -160,6 +164,76 @@ namespace ProjectControlPanelWeb
         {
             gvDoneProjects.PageIndex = e.NewPageIndex;
             LoadProjectInformation();
+        }
+
+        protected void btnResume_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(txtProjectId.Text))
+                {
+                    HandleError("لطفا شناسه پروژه را وارد کنید", new Exception("Project ID is required"));
+                    return;
+                }
+
+                using (var client = new wsRayanehSoapClient()) // Adjust class name based on generated proxy
+                {
+                    string result = client.Resume(txtProjectId.Text); // Adjust method call based on service
+                    lblResult.Text = result ?? "پروژه با موفقیت از سر گرفته شد.";
+                    lblResult.CssClass = "success-message";
+                }
+            }
+            catch (Exception ex)
+            {
+                HandleError("خطا در از سرگیری پروژه", ex);
+            }
+        }
+
+        protected void btnPause_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(txtProjectId.Text))
+                {
+                    HandleError("لطفا شناسه پروژه را وارد کنید", new Exception("Project ID is required"));
+                    return;
+                }
+
+                using (var client = new wsRayanehSoapClient()) // Adjust class name based on generated proxy
+                {
+                    string result = client.Pause(txtProjectId.Text); // Adjust method call based on service
+                    lblResult.Text = result ?? "پروژه با موفقیت متوقف شد.";
+                    lblResult.CssClass = "success-message";
+                }
+            }
+            catch (Exception ex)
+            {
+                HandleError("خطا در توقف  پروژه", ex);
+            }
+        }
+
+
+        protected void btnBreak_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(txtProjectId.Text))
+                {
+                    HandleError("لطفا شناسه پروژه را وارد کنید", new Exception("Project ID is required"));
+                    return;
+                }
+
+                using (var client = new wsRayanehSoapClient()) // Adjust class name based on generated proxy
+                {
+                    string result = client.Break(txtProjectId.Text); // Adjust method call based on service
+                    lblResult.Text = result ?? "پروژه با موفقیت متوقف شد.";
+                    lblResult.CssClass = "success-message";
+                }
+            }
+            catch (Exception ex)
+            {
+                HandleError("خطا در توقف پروژه", ex);
+            }
         }
     }
 }

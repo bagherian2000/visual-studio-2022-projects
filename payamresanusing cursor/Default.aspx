@@ -173,9 +173,9 @@
                 <div class="buttons">
                     <asp:Button ID="btnRequestSettings" runat="server" Text="درخواست تنظیمات" />
                     <asp:Button ID="btnSend" runat="server" Text="Send =>" OnClientClick="return validateFileUploads();" />
-                    <asp:Button ID="btnResume" runat="server" Text="Resume" />
-                    <asp:Button ID="btnPause" runat="server" Text="Pause" />
-                    <asp:Button ID="btnBreak" runat="server" Text="Break" />
+                   <asp:Button ID="btnResume" runat="server" Text="Resume" OnClick="btnResume_Click" />
+                    <asp:Button ID="btnPause" runat="server" Text="Pause"  OnClick="btnPause_Click"/>
+                    <asp:Button ID="btnBreak" runat="server" Text="Break"  OnClick="btnBreak_Click"/>
                 </div>
             </div>
 

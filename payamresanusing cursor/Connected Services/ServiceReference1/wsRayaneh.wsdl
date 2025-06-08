@@ -1,0 +1,540 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://tempuri.org/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="CreateNewProject">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strParameterFromRayaneh" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateNewProjectResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateNewProjectResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Pause">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strProjectsId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PauseResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PauseResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Resume">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strProjectsId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ResumeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ResumeResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Break">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strProjectsId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BreakResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BreakResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ShowAllMessage">
+        <s:complexType />
+      </s:element>
+      <s:element name="ShowAllMessageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ShowAllMessageResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ShowAllRunningProjects">
+        <s:complexType />
+      </s:element>
+      <s:element name="ShowAllRunningProjectsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ShowAllRunningProjectsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ShowAllCallerIds">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strcallerid" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ShowAllCallerIdsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ShowAllCallerIdsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ShowAllmessages">
+        <s:complexType />
+      </s:element>
+      <s:element name="ShowAllmessagesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ShowAllmessagesResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ShowAllCompletedProjects">
+        <s:complexType />
+      </s:element>
+      <s:element name="ShowAllCompletedProjectsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ShowAllCompletedProjectsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RequestOptions">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strProjectsId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RequestOptionsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RequestOptionsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeOptions">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strNewParameterAndPrjId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeOptionsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ChangeOptionsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Checkuserpass">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="struser" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strpass" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckuserpassResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CheckuserpassResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="CreateNewProjectSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateNewProject" />
+  </wsdl:message>
+  <wsdl:message name="CreateNewProjectSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateNewProjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="PauseSoapIn">
+    <wsdl:part name="parameters" element="tns:Pause" />
+  </wsdl:message>
+  <wsdl:message name="PauseSoapOut">
+    <wsdl:part name="parameters" element="tns:PauseResponse" />
+  </wsdl:message>
+  <wsdl:message name="ResumeSoapIn">
+    <wsdl:part name="parameters" element="tns:Resume" />
+  </wsdl:message>
+  <wsdl:message name="ResumeSoapOut">
+    <wsdl:part name="parameters" element="tns:ResumeResponse" />
+  </wsdl:message>
+  <wsdl:message name="BreakSoapIn">
+    <wsdl:part name="parameters" element="tns:Break" />
+  </wsdl:message>
+  <wsdl:message name="BreakSoapOut">
+    <wsdl:part name="parameters" element="tns:BreakResponse" />
+  </wsdl:message>
+  <wsdl:message name="ShowAllMessageSoapIn">
+    <wsdl:part name="parameters" element="tns:ShowAllMessage" />
+  </wsdl:message>
+  <wsdl:message name="ShowAllMessageSoapOut">
+    <wsdl:part name="parameters" element="tns:ShowAllMessageResponse" />
+  </wsdl:message>
+  <wsdl:message name="ShowAllRunningProjectsSoapIn">
+    <wsdl:part name="parameters" element="tns:ShowAllRunningProjects" />
+  </wsdl:message>
+  <wsdl:message name="ShowAllRunningProjectsSoapOut">
+    <wsdl:part name="parameters" element="tns:ShowAllRunningProjectsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ShowAllCallerIdsSoapIn">
+    <wsdl:part name="parameters" element="tns:ShowAllCallerIds" />
+  </wsdl:message>
+  <wsdl:message name="ShowAllCallerIdsSoapOut">
+    <wsdl:part name="parameters" element="tns:ShowAllCallerIdsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ShowAllmessagesSoapIn">
+    <wsdl:part name="parameters" element="tns:ShowAllmessages" />
+  </wsdl:message>
+  <wsdl:message name="ShowAllmessagesSoapOut">
+    <wsdl:part name="parameters" element="tns:ShowAllmessagesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ShowAllCompletedProjectsSoapIn">
+    <wsdl:part name="parameters" element="tns:ShowAllCompletedProjects" />
+  </wsdl:message>
+  <wsdl:message name="ShowAllCompletedProjectsSoapOut">
+    <wsdl:part name="parameters" element="tns:ShowAllCompletedProjectsResponse" />
+  </wsdl:message>
+  <wsdl:message name="RequestOptionsSoapIn">
+    <wsdl:part name="parameters" element="tns:RequestOptions" />
+  </wsdl:message>
+  <wsdl:message name="RequestOptionsSoapOut">
+    <wsdl:part name="parameters" element="tns:RequestOptionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChangeOptionsSoapIn">
+    <wsdl:part name="parameters" element="tns:ChangeOptions" />
+  </wsdl:message>
+  <wsdl:message name="ChangeOptionsSoapOut">
+    <wsdl:part name="parameters" element="tns:ChangeOptionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckuserpassSoapIn">
+    <wsdl:part name="parameters" element="tns:Checkuserpass" />
+  </wsdl:message>
+  <wsdl:message name="CheckuserpassSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckuserpassResponse" />
+  </wsdl:message>
+  <wsdl:portType name="wsRayanehSoap">
+    <wsdl:operation name="CreateNewProject">
+      <wsdl:input message="tns:CreateNewProjectSoapIn" />
+      <wsdl:output message="tns:CreateNewProjectSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Pause">
+      <wsdl:input message="tns:PauseSoapIn" />
+      <wsdl:output message="tns:PauseSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Resume">
+      <wsdl:input message="tns:ResumeSoapIn" />
+      <wsdl:output message="tns:ResumeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Break">
+      <wsdl:input message="tns:BreakSoapIn" />
+      <wsdl:output message="tns:BreakSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ShowAllMessage">
+      <wsdl:input message="tns:ShowAllMessageSoapIn" />
+      <wsdl:output message="tns:ShowAllMessageSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ShowAllRunningProjects">
+      <wsdl:input message="tns:ShowAllRunningProjectsSoapIn" />
+      <wsdl:output message="tns:ShowAllRunningProjectsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ShowAllCallerIds">
+      <wsdl:input message="tns:ShowAllCallerIdsSoapIn" />
+      <wsdl:output message="tns:ShowAllCallerIdsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ShowAllmessages">
+      <wsdl:input message="tns:ShowAllmessagesSoapIn" />
+      <wsdl:output message="tns:ShowAllmessagesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ShowAllCompletedProjects">
+      <wsdl:input message="tns:ShowAllCompletedProjectsSoapIn" />
+      <wsdl:output message="tns:ShowAllCompletedProjectsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RequestOptions">
+      <wsdl:input message="tns:RequestOptionsSoapIn" />
+      <wsdl:output message="tns:RequestOptionsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeOptions">
+      <wsdl:input message="tns:ChangeOptionsSoapIn" />
+      <wsdl:output message="tns:ChangeOptionsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Checkuserpass">
+      <wsdl:input message="tns:CheckuserpassSoapIn" />
+      <wsdl:output message="tns:CheckuserpassSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="wsRayanehSoap" type="tns:wsRayanehSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateNewProject">
+      <soap:operation soapAction="http://tempuri.org/CreateNewProject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Pause">
+      <soap:operation soapAction="http://tempuri.org/Pause" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Resume">
+      <soap:operation soapAction="http://tempuri.org/Resume" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Break">
+      <soap:operation soapAction="http://tempuri.org/Break" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ShowAllMessage">
+      <soap:operation soapAction="http://tempuri.org/ShowAllMessage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ShowAllRunningProjects">
+      <soap:operation soapAction="http://tempuri.org/ShowAllRunningProjects" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ShowAllCallerIds">
+      <soap:operation soapAction="http://tempuri.org/ShowAllCallerIds" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ShowAllmessages">
+      <soap:operation soapAction="http://tempuri.org/ShowAllmessages" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ShowAllCompletedProjects">
+      <soap:operation soapAction="http://tempuri.org/ShowAllCompletedProjects" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RequestOptions">
+      <soap:operation soapAction="http://tempuri.org/RequestOptions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeOptions">
+      <soap:operation soapAction="http://tempuri.org/ChangeOptions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Checkuserpass">
+      <soap:operation soapAction="http://tempuri.org/Checkuserpass" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="wsRayanehSoap12" type="tns:wsRayanehSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateNewProject">
+      <soap12:operation soapAction="http://tempuri.org/CreateNewProject" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Pause">
+      <soap12:operation soapAction="http://tempuri.org/Pause" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Resume">
+      <soap12:operation soapAction="http://tempuri.org/Resume" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Break">
+      <soap12:operation soapAction="http://tempuri.org/Break" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ShowAllMessage">
+      <soap12:operation soapAction="http://tempuri.org/ShowAllMessage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ShowAllRunningProjects">
+      <soap12:operation soapAction="http://tempuri.org/ShowAllRunningProjects" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ShowAllCallerIds">
+      <soap12:operation soapAction="http://tempuri.org/ShowAllCallerIds" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ShowAllmessages">
+      <soap12:operation soapAction="http://tempuri.org/ShowAllmessages" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ShowAllCompletedProjects">
+      <soap12:operation soapAction="http://tempuri.org/ShowAllCompletedProjects" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RequestOptions">
+      <soap12:operation soapAction="http://tempuri.org/RequestOptions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeOptions">
+      <soap12:operation soapAction="http://tempuri.org/ChangeOptions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Checkuserpass">
+      <soap12:operation soapAction="http://tempuri.org/Checkuserpass" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="wsRayaneh">
+    <wsdl:port name="wsRayanehSoap" binding="tns:wsRayanehSoap">
+      <soap:address location="http://10.85.66.20/wsRayaneh.asmx" />
+    </wsdl:port>
+    <wsdl:port name="wsRayanehSoap12" binding="tns:wsRayanehSoap12">
+      <soap12:address location="http://10.85.66.20/wsRayaneh.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
