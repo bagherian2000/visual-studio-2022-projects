@@ -6,6 +6,8 @@ using System.Text;
 using System.Data;
 using System.Web.UI.WebControls;
 using payamresanusing_cursor.ServiceReference1;
+using System.IO;
+using System.Net;
 
 namespace ProjectControlPanelWeb
 {
@@ -37,14 +39,14 @@ namespace ProjectControlPanelWeb
             LoadProjectInformation();
             chkInternalWave.Checked = true;
 
-            
+
 
         }
 
         protected void chkInternalWave_CheckedChanged(object sender, EventArgs e)
         {
-           
-           
+
+
         }
 
         private void PopulateInternalWaveNo()
@@ -234,6 +236,89 @@ namespace ProjectControlPanelWeb
             catch (Exception ex)
             {
                 HandleError("خطا در توقف پروژه", ex);
+            }
+        }
+
+
+        protected void btnSend_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Validate at least the text file is uploaded
+                if (FileUpload1.HasFile == false)
+                {
+                    HandleError("لطفا فایل متن را انتخاب کنید", new Exception("Text file is required"));
+                    return;
+                }
+
+                // Upload text file to FTP (required)
+                bool textUploaded = UploadFileToFtp(FileUpload1, ConfigurationManager.AppSettings["FTPTextFolder"]);
+
+                // Upload voice file to FTP if provided (optional)
+                bool voiceUploaded = true; // default to true if no voice file
+                if (wavFileUpload != null && wavFileUpload.HasFile)
+                {
+                    voiceUploaded = UploadFileToFtp(wavFileUpload, ConfigurationManager.AppSettings["FTPVoiceFolder"]);
+                }
+
+                if (textUploaded && voiceUploaded)
+                {
+                    string successMessage = "فایل متن با موفقیت به سرور FTP ارسال شد.";
+                    if (wavFileUpload != null && wavFileUpload.HasFile)
+                    {
+                        successMessage = "فایل‌ها با موفقیت به سرور FTP ارسال شدند.";
+                    }
+                    lblResult.Text = successMessage;
+                    lblResult.CssClass = "success-message";
+                }
+                else
+                {
+                    HandleError("خطا در ارسال فایل‌ها به سرور FTP",
+                        new Exception(textUploaded ? "Voice file upload failed" : "Text file upload failed"));
+                }
+            }
+            catch (Exception ex)
+            {
+                HandleError("خطا در ارسال فایل‌ها", ex);
+            }
+        }
+
+        private bool UploadFileToFtp(FileUpload fileUpload, string ftpFolder)
+        {
+            try
+            {
+                // Get FTP credentials from web.config
+                string ftpServer = ConfigurationManager.AppSettings["FTPServerIP"];
+                string ftpUsername = ConfigurationManager.AppSettings["FTPUserID"];
+                string ftpPassword = ConfigurationManager.AppSettings["FTPPassword"];
+
+                // Create FTP request
+                string ftpPath = $"ftp://{ftpServer}/{ftpFolder}{fileUpload.FileName}";
+                FtpWebRequest request = (FtpWebRequest)WebRequest.Create(ftpPath);
+                request.Method = WebRequestMethods.Ftp.UploadFile;
+                request.Credentials = new NetworkCredential(ftpUsername, ftpPassword);
+                request.UseBinary = true;
+                request.UsePassive = true;
+                request.KeepAlive = false;
+
+                // Write the file to FTP stream
+                using (Stream fileStream = fileUpload.PostedFile.InputStream)
+                using (Stream ftpStream = request.GetRequestStream())
+                {
+                    byte[] buffer = new byte[10240];
+                    int read;
+                    while ((read = fileStream.Read(buffer, 0, buffer.Length)) > 0)
+                    {
+                        ftpStream.Write(buffer, 0, read);
+                    }
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                LogError(ex);
+                return false;
             }
         }
     }

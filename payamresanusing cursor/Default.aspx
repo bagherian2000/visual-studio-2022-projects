@@ -144,57 +144,21 @@
                     <div class="vertical-separator"></div>
 
                     <!-- Call Parameters Section -->
-                    <div class="call-parameters">
-                        <strong>پارامترهای تماس</strong>
+ <div class="call-parameters">
+                        <strong>شماره های تست</strong>
                         <div class="parameter">
-                            <span class="label">7 - desiredSendNo:</span>
-                            <asp:TextBox ID="txtDesiredSendNo" runat="server" CssClass="input" Text="1" TextMode="Number" />
+                            <span class="label">number1:</span>
+                            <asp:TextBox ID="txtTestNumber1" runat="server" CssClass="input" MaxLength="14" oninput="formatPhoneNumber(this)" placeholder="8 or 11 digits" />
                         </div>
                         <div class="parameter">
-                            <span class="label">8 - tresholdNo:</span>
-                            <asp:TextBox ID="txtTresholdNo" runat="server" CssClass="input" Text="1000" TextMode="Number" />
+                            <span class="label">number2:</span>
+                            <asp:TextBox ID="txtTestNumber2" runat="server" CssClass="input" MaxLength="14" oninput="formatPhoneNumber(this)" placeholder="8 or 11 digits" />
                         </div>
                         <div class="parameter">
-                            <span class="label">9 - testRingtime:</span>
-                            <asp:TextBox ID="txtTestRingtime" runat="server" CssClass="input" Text="13" TextMode="Number" />
-                        </div>
-                        <div class="parameter">
-                            <span class="label">10 - mainRingtime:</span>
-                            <asp:TextBox ID="txtMainRingtime" runat="server" CssClass="input" Text="45" TextMode="Number" />
-                        </div>
-                        <div class="parameter">
-                            <span class="label">11 - priority:</span>
-                            <asp:DropDownList ID="ddlPriority" runat="server" CssClass="input">
-                                <asp:ListItem Text="low" Value="low" Selected="True" />
-                                <asp:ListItem Text="medium" Value="medium" />
-                                <asp:ListItem Text="high" Value="high" />
-                            </asp:DropDownList>
+                            <span class="label">number3:</span>
+                            <asp:TextBox ID="txtTestNumber3" runat="server" CssClass="input" MaxLength="14" oninput="formatPhoneNumber(this)" placeholder="8 or 11 digits" />
                         </div>
                     </div>
-                     <div class="parameter test-numbers">
-    <strong>شماره های تست</strong>
-    <div class="test-number-group">
-        <span class="label">number1:</span>
-        <asp:TextBox ID="txtTestNumber1" runat="server" CssClass="input" 
-            MaxLength="14" 
-            oninput="formatPhoneNumber(this)" 
-            placeholder="8 or 11 digits" />
-    </div>
-    <div class="test-number-group">
-        <span class="label">number2:</span>
-        <asp:TextBox ID="txtTestNumber2" runat="server" CssClass="input" 
-            MaxLength="14" 
-            oninput="formatPhoneNumber(this)" 
-            placeholder="8 or 11 digits" />
-    </div>
-    <div class="test-number-group">
-        <span class="label">number3:</span>
-        <asp:TextBox ID="txtTestNumber3" runat="server" CssClass="input" 
-            MaxLength="14" 
-            oninput="formatPhoneNumber(this)" 
-            placeholder="8 or 11 digits" />
-    </div>
-</div>
                 </div>
             </div>
 
@@ -243,7 +207,9 @@
                 <asp:TextBox ID="txtProjectId" runat="server" CssClass="input" />
                 <div class="buttons">
                     <asp:Button ID="btnRequestSettings" runat="server" Text="درخواست تنظیمات" />
-                    <asp:Button ID="btnSend" runat="server" Text="Send =>" OnClientClick="return validateFileUploads();" />
+                  <asp:Button ID="btnSend" runat="server" Text="Send =>" 
+    OnClientClick="return validateFileUploads()" 
+    OnClick="btnSend_Click" />
                    <asp:Button ID="btnResume" runat="server" Text="Resume" OnClick="btnResume_Click" />
                     <asp:Button ID="btnPause" runat="server" Text="Pause"  OnClick="btnPause_Click"/>
                     <asp:Button ID="btnBreak" runat="server" Text="Break"  OnClick="btnBreak_Click"/>
