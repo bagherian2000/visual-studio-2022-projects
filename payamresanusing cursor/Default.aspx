@@ -27,6 +27,8 @@
             var telFile = document.getElementById('<%= FileUpload1.ClientID %>');
             var chkInternalWave = document.getElementById('<%= chkInternalWave.ClientID %>');
             var wavFile = document.getElementById('<%= wavFileUpload.ClientID %>');
+            var callerId = document.getElementById('<%= ddlCalleId.ClientID %>');
+
 
             // Check if tel file is selected
             if (!telFile.value) {
@@ -40,7 +42,11 @@
                 return false;
             }
 
-
+            // Check if callerId is selected
+            if (!callerId.value) {
+                alert('لطفا شناسه تماس گیرنده را انتخاب کنید');
+                return false;
+            }
             const testNumbers = [
                 document.getElementById('<%= txtTestNumber1.ClientID %>'),
                 document.getElementById('<%= txtTestNumber2.ClientID %>'),
@@ -140,6 +146,48 @@
                         </div>
                     </div>
 
+
+
+                            <!-- Vertical Separator -->
+        <div class="vertical-separator"></div>
+
+        <!-- Call Parameters Section -->
+        <div class="call-parameters">
+            <strong>پارامترهای تماس</strong>
+
+             <div class="parameter">
+               <span class="label">7 - callerId:</span>
+               <asp:DropDownList ID="ddlCalleId" runat="server" CssClass="input" />
+              </div>
+            <div class="parameter">
+                <span class="label">8 - desiredSendNo:</span>
+                <asp:TextBox ID="txtDesiredSendNo" runat="server" CssClass="input" Text="1" TextMode="Number" />
+            </div>
+            <div class="parameter">
+                <span class="label">9 - tresholdNo:</span>
+                <asp:TextBox ID="txtTresholdNo" runat="server" CssClass="input" Text="1000" TextMode="Number" />
+            </div>
+            <div class="parameter">
+                <span class="label">10 - testRingtime:</span>
+                <asp:TextBox ID="txtTestRingtime" runat="server" CssClass="input" Text="13" TextMode="Number" />
+            </div>
+            <div class="parameter">
+                <span class="label">11 - mainRingtime:</span>
+                <asp:TextBox ID="txtMainRingtime" runat="server" CssClass="input" Text="45" TextMode="Number" />
+            </div>
+            <div class="parameter">
+                <span class="label">12 - priority:</span>
+                <asp:DropDownList ID="ddlPriority" runat="server" CssClass="input">
+                    <asp:ListItem Text="low" Value="3" Selected="True" />
+                    <asp:ListItem Text="medium" Value="2" />
+                    <asp:ListItem Text="high" Value="1" />
+                </asp:DropDownList>
+            </div>
+        </div>
+
+
+
+
                     <!-- Vertical Separator -->
                     <div class="vertical-separator"></div>
 
@@ -147,15 +195,15 @@
  <div class="call-parameters">
                         <strong>شماره های تست</strong>
                         <div class="parameter">
-                            <span class="label">number1:</span>
+                            <span class="label">13-number1:</span>
                             <asp:TextBox ID="txtTestNumber1" runat="server" CssClass="input" MaxLength="14" oninput="formatPhoneNumber(this)" placeholder="8 or 11 digits" />
                         </div>
                         <div class="parameter">
-                            <span class="label">number2:</span>
+                            <span class="label">14-number2:</span>
                             <asp:TextBox ID="txtTestNumber2" runat="server" CssClass="input" MaxLength="14" oninput="formatPhoneNumber(this)" placeholder="8 or 11 digits" />
                         </div>
                         <div class="parameter">
-                            <span class="label">number3:</span>
+                            <span class="label">15-number3:</span>
                             <asp:TextBox ID="txtTestNumber3" runat="server" CssClass="input" MaxLength="14" oninput="formatPhoneNumber(this)" placeholder="8 or 11 digits" />
                         </div>
                     </div>

@@ -16,7 +16,7 @@ namespace ProjectControlPanelWeb
         private readonly string connectionString = ConfigurationManager.ConnectionStrings["PayamResanDB"].ConnectionString;
         private const string QUERY_GET_MESSAGES = "SELECT Number FROM tblMessage ORDER BY Number";
         private const string QUERY_GET_MESSAGE_DETAILS = "SELECT number, message FROM tblMessage";
-
+        private const string QUERY_GET_CALLER_IDS = "SELECT callerid FROM tblallcallerids ORDER BY callerid";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -36,6 +36,7 @@ namespace ProjectControlPanelWeb
         {
             PopulateInternalWaveNo();
             PopulateMessages();
+            PopulateCalleId();
             LoadProjectInformation();
             chkInternalWave.Checked = true;
 
@@ -138,6 +139,32 @@ namespace ProjectControlPanelWeb
             // For example, using System.Diagnostics.EventLog or a custom logging solution
             System.Diagnostics.Debug.WriteLine($"Error: {ex.Message}");
             System.Diagnostics.Debug.WriteLine($"Stack Trace: {ex.StackTrace}");
+        }
+
+        private void PopulateCalleId()
+        {
+            using (var conn = new SqlConnection(connectionString))
+            using (var cmd = new SqlCommand(QUERY_GET_CALLER_IDS, conn))
+            {
+                try
+                {
+                    conn.Open();
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        ddlCalleId.Items.Clear();
+                        ddlCalleId.Items.Add(new ListItem("-- Select Caller ID --", ""));
+                        while (reader.Read())
+                        {
+                            ddlCalleId.Items.Add(new ListItem(reader["callerid"].ToString(), reader["callerid"].ToString()));
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    HandleError("خطا در بارگذاری شناسه‌های تماس", ex);
+                    throw;
+                }
+            }
         }
 
         protected void LoadProjectInformation()
@@ -281,6 +308,31 @@ namespace ProjectControlPanelWeb
             {
                 HandleError("خطا در ارسال فایل‌ها", ex);
             }
+
+
+            string chgTextFileName = "_" + DateTime.Now.Millisecond + "_" + FileUpload1.FileName;
+
+            string strAllParameter = "";
+
+           strAllParameter = String.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14},{15},{16}",
+                Path.GetFileName(chgTextFileName),//0
+                chkInternalWave.Checked,//1
+                ddlInternalWaveNo.SelectedValue,//2 
+                Path.GetFileName(wavFileUpload.FileName),//3
+                txtStartHour.Text,//4
+                txtStartMinute.Text,//5
+                txtEndHour.Text,//6
+                txtEndMinute.Text,//7
+                txtDesiredSendNo.Text,//8
+                txtTresholdNo.Text,//9
+                txtTestRingtime.Text,//10
+                txtTestNumber1.Text,//11
+                txtTestNumber2.Text,//12
+                txtTestNumber3.Text,//13
+                ddlCalleId.SelectedValue,//14
+                txtMainRingtime.Text,//15
+                ddlPriority.Text);//16
+             
         }
 
         private bool UploadFileToFtp(FileUpload fileUpload, string ftpFolder)
