@@ -165,7 +165,7 @@
             </div>
             <div class="parameter">
                 <span class="label">9 - tresholdNo:</span>
-                <asp:TextBox ID="txtTresholdNo" runat="server" CssClass="input" Text="1000" TextMode="Number" />
+                <asp:TextBox ID="txtTresholdNo" runat="server" CssClass="input" Text="10000" TextMode="Number" />
             </div>
             <div class="parameter">
                 <span class="label">10 - testRingtime:</span>

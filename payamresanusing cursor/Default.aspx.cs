@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 using payamresanusing_cursor.ServiceReference1;
 using System.IO;
 using System.Net;
+using System.Text.RegularExpressions;
 
 namespace ProjectControlPanelWeb
 {
@@ -17,6 +18,7 @@ namespace ProjectControlPanelWeb
         private const string QUERY_GET_MESSAGES = "SELECT Number FROM tblMessage ORDER BY Number";
         private const string QUERY_GET_MESSAGE_DETAILS = "SELECT number, message FROM tblMessage";
         private const string QUERY_GET_CALLER_IDS = "SELECT callerid FROM tblallcallerids ORDER BY callerid";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -39,15 +41,11 @@ namespace ProjectControlPanelWeb
             PopulateCalleId();
             LoadProjectInformation();
             chkInternalWave.Checked = true;
-
-
-
         }
 
         protected void chkInternalWave_CheckedChanged(object sender, EventArgs e)
         {
-
-
+            // Implementation if needed
         }
 
         private void PopulateInternalWaveNo()
@@ -135,8 +133,6 @@ namespace ProjectControlPanelWeb
 
         private void LogError(Exception ex)
         {
-            // You can implement your preferred logging mechanism here
-            // For example, using System.Diagnostics.EventLog or a custom logging solution
             System.Diagnostics.Debug.WriteLine($"Error: {ex.Message}");
             System.Diagnostics.Debug.WriteLine($"Stack Trace: {ex.StackTrace}");
         }
@@ -173,7 +169,7 @@ namespace ProjectControlPanelWeb
             {
                 using (var connection = new SqlConnection(connectionString))
                 {
-                    const string query = "SELECT * FROM vwLastPrj  order by startSendDate DESC";
+                    const string query = "SELECT * FROM vwLastPrj order by startSendDate DESC";
                     using (var adapter = new SqlDataAdapter(query, connection))
                     {
                         var dt = new DataTable();
@@ -205,9 +201,9 @@ namespace ProjectControlPanelWeb
                     return;
                 }
 
-                using (var client = new wsRayanehSoapClient()) // Adjust class name based on generated proxy
+                using (var client = new wsRayanehSoapClient())
                 {
-                    string result = client.Resume(txtProjectId.Text); // Adjust method call based on service
+                    string result = client.Resume(txtProjectId.Text);
                     lblResult.Text = result ?? "پروژه با موفقیت از سر گرفته شد.";
                     lblResult.CssClass = "success-message";
                 }
@@ -228,34 +224,9 @@ namespace ProjectControlPanelWeb
                     return;
                 }
 
-                using (var client = new wsRayanehSoapClient()) // Adjust class name based on generated proxy
+                using (var client = new wsRayanehSoapClient())
                 {
-                    string result = client.Pause(txtProjectId.Text); // Adjust method call based on service
-                    lblResult.Text = result ?? "پروژه با موفقیت متوقف شد.";
-                    lblResult.CssClass = "success-message";
-                }
-            }
-            catch (Exception ex)
-            {
-                HandleError("خطا در توقف  پروژه", ex);
-            }
-        }
-
-
-        protected void btnBreak_Click(object sender, EventArgs e)
-        {
-            try
-            {
-
-                if (string.IsNullOrEmpty(txtProjectId.Text))
-                {
-                    HandleError("لطفا شناسه پروژه را وارد کنید", new Exception("Project ID is required"));
-                    return;
-                }
-
-                using (var client = new wsRayanehSoapClient()) // Adjust class name based on generated proxy
-                {
-                    string result = client.Break(txtProjectId.Text); // Adjust method call based on service
+                    string result = client.Pause(txtProjectId.Text);
                     lblResult.Text = result ?? "پروژه با موفقیت متوقف شد.";
                     lblResult.CssClass = "success-message";
                 }
@@ -266,32 +237,59 @@ namespace ProjectControlPanelWeb
             }
         }
 
-
-        protected void btnSend_Click(object sender, EventArgs e)
+        protected void btnBreak_Click(object sender, EventArgs e)
         {
             try
             {
+                if (string.IsNullOrEmpty(txtProjectId.Text))
+                {
+                    HandleError("لطفا شناسه پروژه را وارد کنید", new Exception("Project ID is required"));
+                    return;
+                }
+
+                using (var client = new wsRayanehSoapClient())
+                {
+                    string result = client.Break(txtProjectId.Text);
+                    lblResult.Text = result ?? "پروژه با موفقیت متوقف شد.";
+                    lblResult.CssClass = "success-message";
+                }
+            }
+            catch (Exception ex)
+            {
+                HandleError("خطا در توقف پروژه", ex);
+            }
+        }
+
+        protected void btnSend_Click(object sender, EventArgs e)
+        {
+            string chgTextFileName = null;
+            string chgVoiceFileName = null; // Store WAV file name
+            bool hasWavFile = false; // Track if WAV file was uploaded
+            try
+            {
                 // Validate at least the text file is uploaded
-                if (FileUpload1.HasFile == false)
+                if (!FileUpload1.HasFile)
                 {
                     HandleError("لطفا فایل متن را انتخاب کنید", new Exception("Text file is required"));
                     return;
                 }
-
+                chgTextFileName = "_" + DateTime.Now.Millisecond + "_" + FileUpload1.FileName;
                 // Upload text file to FTP (required)
-                bool textUploaded = UploadFileToFtp(FileUpload1, ConfigurationManager.AppSettings["FTPTextFolder"]);
+                bool textUploaded = UploadFileToFtp(FileUpload1, chgTextFileName, ConfigurationManager.AppSettings["FTPTextFolder"]);
 
                 // Upload voice file to FTP if provided (optional)
                 bool voiceUploaded = true; // default to true if no voice file
                 if (wavFileUpload != null && wavFileUpload.HasFile)
                 {
-                    voiceUploaded = UploadFileToFtp(wavFileUpload, ConfigurationManager.AppSettings["FTPVoiceFolder"]);
+                    hasWavFile = true; // Set flag before uploading
+                    chgVoiceFileName = "_" + DateTime.Now.Millisecond + "_" + wavFileUpload.FileName;
+                    voiceUploaded = UploadFileToFtp(wavFileUpload, chgVoiceFileName, ConfigurationManager.AppSettings["FTPVoiceFolder"]);
                 }
 
                 if (textUploaded && voiceUploaded)
                 {
                     string successMessage = "فایل متن با موفقیت به سرور FTP ارسال شد.";
-                    if (wavFileUpload != null && wavFileUpload.HasFile)
+                    if (hasWavFile)
                     {
                         successMessage = "فایل‌ها با موفقیت به سرور FTP ارسال شدند.";
                     }
@@ -302,40 +300,43 @@ namespace ProjectControlPanelWeb
                 {
                     HandleError("خطا در ارسال فایل‌ها به سرور FTP",
                         new Exception(textUploaded ? "Voice file upload failed" : "Text file upload failed"));
+                    return;
                 }
             }
             catch (Exception ex)
             {
                 HandleError("خطا در ارسال فایل‌ها", ex);
+                return;
             }
 
+            // Ensure chgTextFileName is not null before using it
+            if (string.IsNullOrEmpty(chgTextFileName))
+            {
+                HandleError("خطا: نام فایل متن تولید نشده است", new Exception("chgTextFileName is null"));
+                return;
+            }
 
-            string chgTextFileName = "_" + DateTime.Now.Millisecond + "_" + FileUpload1.FileName;
-
-            string strAllParameter = "";
-
-           strAllParameter = String.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14},{15},{16}",
-                Path.GetFileName(chgTextFileName),//0
-                chkInternalWave.Checked,//1
-                ddlInternalWaveNo.SelectedValue,//2 
-                Path.GetFileName(wavFileUpload.FileName),//3
-                txtStartHour.Text,//4
-                txtStartMinute.Text,//5
-                txtEndHour.Text,//6
-                txtEndMinute.Text,//7
-                txtDesiredSendNo.Text,//8
-                txtTresholdNo.Text,//9
-                txtTestRingtime.Text,//10
-                txtTestNumber1.Text,//11
-                txtTestNumber2.Text,//12
-                txtTestNumber3.Text,//13
-                ddlCalleId.SelectedValue,//14
-                txtMainRingtime.Text,//15
-                ddlPriority.Text);//16
-             
+            string strAllParameter = String.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14},{15},{16}",
+                Path.GetFileName(chgTextFileName), //0
+                chkInternalWave.Checked ? "1" : "0", //1
+                ddlInternalWaveNo.SelectedValue, //2 
+                hasWavFile ? Path.GetFileName(wavFileUpload.FileName) : "", //3
+                txtStartHour.Text, //4
+                txtStartMinute.Text, //5
+                txtEndHour.Text, //6
+                txtEndMinute.Text, //7
+                txtDesiredSendNo.Text, //8
+                txtTresholdNo.Text, //9
+                txtTestRingtime.Text, //10
+                Regex.Replace(txtTestNumber1.Text, "[^0-9]", ""), //11
+                Regex.Replace(txtTestNumber2.Text, "[^0-9]", ""), //12
+                Regex.Replace(txtTestNumber3.Text, "[^0-9]", ""), //13
+                ddlCalleId.SelectedValue, //14
+                txtMainRingtime.Text, //15
+                ddlPriority.SelectedValue); //16
         }
 
-        private bool UploadFileToFtp(FileUpload fileUpload, string ftpFolder)
+        private bool UploadFileToFtp(FileUpload fileUpload, string fileName, string ftpFolder)
         {
             try
             {
@@ -345,7 +346,7 @@ namespace ProjectControlPanelWeb
                 string ftpPassword = ConfigurationManager.AppSettings["FTPPassword"];
 
                 // Create FTP request
-                string ftpPath = $"ftp://{ftpServer}/{ftpFolder}{fileUpload.FileName}";
+                string ftpPath = $"ftp://{ftpServer}/{ftpFolder}/{fileName}";
                 FtpWebRequest request = (FtpWebRequest)WebRequest.Create(ftpPath);
                 request.Method = WebRequestMethods.Ftp.UploadFile;
                 request.Credentials = new NetworkCredential(ftpUsername, ftpPassword);
