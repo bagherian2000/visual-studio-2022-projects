@@ -334,6 +334,31 @@ namespace ProjectControlPanelWeb
                 ddlCalleId.SelectedValue, //14
                 txtMainRingtime.Text, //15
                 ddlPriority.SelectedValue); //16
+
+            using (var client = new wsRayanehSoapClient())
+            {
+                string result = client.CreateNewProject(strAllParameter);
+                lblResult.Text = result ?? "پروژه با موفقیت ایجاد شد.";
+                lblResult.CssClass = "success-message";
+            }
+           
+
+            System.Threading.Thread.Sleep(5000);
+
+            bool bolIsOk = false;
+
+            if (lblResult.Text.IndexOf("موفقیت") > 0)
+            {
+                bolIsOk = true;
+                btnSend.Enabled = false;
+            }
+            else
+            {
+                bolIsOk = false;
+                btnSend.Enabled = true;
+            }
+
+
         }
 
         private bool UploadFileToFtp(FileUpload fileUpload, string fileName, string ftpFolder)
