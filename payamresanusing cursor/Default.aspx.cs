@@ -40,6 +40,8 @@ namespace ProjectControlPanelWeb
             PopulateMessages();
             PopulateCalleId();
             LoadProjectInformation();
+            LoadRunningProjectInformation();
+
             chkInternalWave.Checked = true;
         }
 
@@ -182,6 +184,28 @@ namespace ProjectControlPanelWeb
             catch (Exception ex)
             {
                 HandleError("خطا در بارگذاری اطلاعات پروژه", ex);
+            }
+        }
+
+        protected void LoadRunningProjectInformation()
+        {
+            try
+            {
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    const string query = "SELECT * FROM vwStatForMainForm order by projectsId DESC";
+                    using (var adapter = new SqlDataAdapter(query, connection))
+                    {
+                        var dt = new DataTable();
+                        adapter.Fill(dt);
+                        gvRunning.DataSource = dt;
+                        gvRunning.DataBind();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                HandleError(" خطا در بارگذاری اطلاعات پروژه های در حال اجرا", ex);
             }
         }
 

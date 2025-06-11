@@ -216,14 +216,15 @@
                 <asp:GridView ID="gvRunning" runat="server" CssClass="grid" AutoGenerateColumns="False">
                     <Columns>
                         <asp:BoundField DataField="me" HeaderText="me" />
-                        <asp:BoundField DataField="status" HeaderText="status" />
-                        <asp:BoundField DataField="totalSuccess" HeaderText="totalSuccess" />
-                        <asp:BoundField DataField="curSuccess" HeaderText="curSuccess" />
-                        <asp:BoundField DataField="curAnswerTels" HeaderText="curAnswerTels" />
-                        <asp:BoundField DataField="curTotalSended" HeaderText="curTotalSended" />
-                        <asp:BoundField DataField="totalTelInMainFile" HeaderText="curTotalTels" />
-                        <asp:BoundField DataField="strCurSendingNo" HeaderText="strCurSendingNo" />
-                        <asp:BoundField DataField="priority" HeaderText="priority" />
+                        <asp:BoundField DataField="projectsId" HeaderText="شناسه پروژه" />
+                        <asp:BoundField DataField="telFileName" HeaderText="نام فایل تلفن" />
+                        <asp:BoundField DataField="totalSuccess" HeaderText="موفقیت کلی " />
+                        <asp:BoundField DataField="curSuccess" HeaderText="موفقیت فعلی" />
+                        <asp:BoundField DataField="curAnswerTels" HeaderText="جواب فعلی" />
+                        <asp:BoundField DataField="totalTelInMainFile" HeaderText="تعداد کل" />
+                        <asp:BoundField DataField="curTotalSended" HeaderText="تعداد ارسال شده" />
+                        <asp:BoundField DataField="strCurSendingNo" HeaderText="دفعات ارسال" />
+                        <asp:BoundField DataField="priority" HeaderText="اولویت" />
                     </Columns>
                 </asp:GridView>
             </div>
